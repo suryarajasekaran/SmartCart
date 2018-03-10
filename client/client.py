@@ -17,6 +17,8 @@ def create_data(sensor_id, product_id, sensor_type, client_id):
         "sensor_id": sensor_id,
         "product_id": product_id
     }
-    return json.dumps(data)
+    return data
 
-if __name__ == '__main__':
+def read_config():
+    data = json.load(open('config.json'))
+    return data
