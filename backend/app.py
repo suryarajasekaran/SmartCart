@@ -34,6 +34,9 @@ def list():
         data_access_obj.mongodb_obj.add_list(list_data=json_data)
         return json.dumps({"status": True})
     elif request.method == 'PUT':
+        json_data = request.get_json(force=True)
+        data_access_obj = DataAccess()
+        data_access_obj.mongodb_obj.update_list(query_filter=json_data["query_filter"], list_update_data=json_data["list_update_data"])
         return json.dumps({"status": True})
     else:
         return json.dumps({"status":False})
@@ -49,7 +52,7 @@ def product():
     elif request.method == 'POST':
         json_data = request.get_json(force=True)
         data_access_obj = DataAccess()
-        data_access_obj.mongodb_obj.add_product(list_data=json_data)
+        data_access_obj.mongodb_obj.add_product(product_data=json_data)
         return json.dumps({"status": True})
     else:
         return json.dumps({"status":False})
