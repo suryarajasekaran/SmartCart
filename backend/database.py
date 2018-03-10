@@ -8,7 +8,7 @@ import os
 class DataAccess(object):
 
     def __init__(self):
-        mongodb_url = "mongodb://heroku_vl4kdnfm:pgsdq90hk47vef4nboqha2sklk@ds251548.mlab.com:51548/heroku_vl4kdnfm"
+        mongodb_url = "mongodb://mongo:27017"
         self.mongodb_obj = MongoDB(url=mongodb_url)
 
 class MongoDB(object):
