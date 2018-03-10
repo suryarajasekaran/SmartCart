@@ -1,0 +1,13 @@
+{
+  "client_id" : "raspberry-pi-1",
+  "sensor_type" : {
+    "automatic" : {
+      "sensor_id" : "level-sensor-1",
+      "product_id" : ""
+    },
+    "manual" : {
+      "sensor_id": "button-sensor-1",
+      "product_id": ""
+    }
+  }
+}

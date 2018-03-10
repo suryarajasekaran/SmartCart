@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS, cross_origin
 import json
 import requests
+import datetime
 
 from database import *
 
@@ -29,7 +30,9 @@ def list():
         output_data = data_access_obj.mongodb_obj.get_list(query_filter=query_filter)
         return json.dumps(output_data)
     elif request.method == 'POST':
+        timestamp = datetime.datetime.now()
         json_data = request.get_json(force=True)
+        json_data["timestamp"] = timestamp
         data_access_obj = DataAccess()
         data_access_obj.mongodb_obj.add_list(list_data=json_data)
         return json.dumps({"status": True})
