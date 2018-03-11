@@ -31,14 +31,17 @@ function getList() {
                 var li = document.createElement('li');
                 li.className = ('row')
 
+                var productImg = document.createElement('img')
+                productImg.setAttribute('src', productData.image);
+                productImg.setAttribute('alt', productData.name);
+                productImg.setAttribute('height', "40px");
+                productImg.setAttribute('width', "40px");
+                li.appendChild(productImg)
+
                 var slNo = document.createElement('span');
                 slNo.className = ('quantity')
                 slNo.innerHTML = i+1;
                 li.appendChild(slNo)
-
-                var img = document.createElement('img')
-                img.src = productData.image
-                img.alt = productData.name
 
                 var productId = document.createElement('span');
                 productId.className = ('itemName')
