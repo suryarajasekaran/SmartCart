@@ -75,7 +75,7 @@ def product():
     elif request.method == 'PUT':
         json_data = request.get_json(force=True)
         data_access_obj = DataAccess()
-        data_access_obj.mongodb_obj.update_product(query_filter=json_data["query_filter"], list_update_data=json_data["product_update_data"])
+        data_access_obj.mongodb_obj.update_product(query_filter=json_data["query_filter"], product_update_data=json_data["product_update_data"])
         return json.dumps({"status": True})
     else:
         return json.dumps({"status":False})
