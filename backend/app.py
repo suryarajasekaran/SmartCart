@@ -54,7 +54,8 @@ def list():
     else:
         return json.dumps({"status":False})
 
-@app.route('/product', methods=['GET','POST'])
+
+@app.route('/product', methods=['GET','POST', 'PUT'])
 @cross_origin(origin=origin_str)
 def product():
     if request.method == 'GET':
@@ -70,6 +71,11 @@ def product():
         json_data = request.get_json(force=True)
         data_access_obj = DataAccess()
         data_access_obj.mongodb_obj.add_product(product_data=json_data)
+        return json.dumps({"status": True})
+    elif request.method == 'PUT':
+        json_data = request.get_json(force=True)
+        data_access_obj = DataAccess()
+        data_access_obj.mongodb_obj.update_product(query_filter=json_data["query_filter"], list_update_data=json_data["product_update_data"])
         return json.dumps({"status": True})
     else:
         return json.dumps({"status":False})

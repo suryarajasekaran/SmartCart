@@ -36,6 +36,10 @@ function getList() {
                 slNo.innerHTML = i+1;
                 li.appendChild(slNo)
 
+                var img = document.createElement('img')
+                img.src = productData.image
+                img.alt = productData.name
+
                 var productId = document.createElement('span');
                 productId.className = ('itemName')
                 productId.innerHTML = productData.name;
