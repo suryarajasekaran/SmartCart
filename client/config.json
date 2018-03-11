@@ -4,7 +4,7 @@
   "sensor_type" : {
     "automatic" : {
       "sensor_id" : "level-sensor-1",
-      "threshold" : 50
+      "alert_thresold" : 0
     },
     "manual" : {
       "sensor_id": "button-sensor-1"

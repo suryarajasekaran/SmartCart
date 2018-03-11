@@ -1,20 +1,17 @@
-import RPi.GPIO as GPIO
->>> GPIO.setmode(GPIO.BCM)
->>> GPIO.setup(23,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
->>> print GPIO.input(23)
-0
->>> print GPIO.input(23)
+import RPi.GPIO as GPIO
 import schedule
 import time
 
 from client import *
 
+
 def get_sensor_value():
-    # dump your sensor pull logic
-    return 45
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    return GPIO.input(23)
 
 def automatic_sensor_check():
-    if get_sensor_value() < read_config()["sensor_type"]["automatic"]["threshold"] :
+    if get_sensor_value() == read_config()["sensor_type"]["automatic"]["alert_thresold"]:
         data = create_data(sensor_id=read_config()["sensor_type"]["automatic"]["sensor_id"],
                            product_id=read_config()["product_id"],
                            client_id=read_config()["client_id"],
