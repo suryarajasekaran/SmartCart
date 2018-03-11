@@ -23,30 +23,43 @@ function getList() {
             list.innerHTML = ""
             for(var i = 0; i < dataset.length; i++) {
                 productData = getProductInfo(dataset[i].product_id)[0]
-                //dataset[i].sensor_id;
-                //dataset[i].product_id;
-                //dataset[i].timestamp;
-                //dataset[i].sensor_type;
-                //dataset[i].client_id;
                 var li = document.createElement('li');
                 li.className = ('row')
 
-                var productImg = document.createElement('img')
-                productImg.setAttribute('src', productData.image);
-                productImg.setAttribute('alt', productData.name);
-                productImg.setAttribute('height', "40px");
-                productImg.setAttribute('width', "40px");
-                li.appendChild(productImg)
+                var productImg = document.createElement('span');
+                productImg.className = ('productImg')
+                var pImg = document.createElement('img')
+                pImg.setAttribute('src', productData.image);
+                pImg.setAttribute('alt', productData.name);
+                pImg.setAttribute('height', "40px");
+                pImg.setAttribute('weight', "40px");
+                productImg.appendChild(pImg);
+                li.appendChild(productImg);
 
                 var slNo = document.createElement('span');
-                slNo.className = ('quantity')
+                slNo.className = ('slNo')
                 slNo.innerHTML = i+1;
                 li.appendChild(slNo)
 
-                var productId = document.createElement('span');
-                productId.className = ('itemName')
-                productId.innerHTML = productData.name;
-                li.appendChild(productId)
+                var productName = document.createElement('span');
+                productName.className = ('productName')
+                productName.innerHTML = productData.name;
+                li.appendChild(productName);
+
+                var sensorId = document.createElement('span');
+                sensorId.className = ('sensorId')
+                sensorId.innerHTML = dataset[i].sensor_id;
+                li.appendChild(sensorId);
+
+                /*var timestamp = document.createElement('span');
+                timestamp.className = ('timestamp')
+                timestamp.innerHTML = dataset[i].timestamp;
+                li.appendChild(timestamp);*/
+
+                var clientId = document.createElement('span');
+                clientId.className = ('clientId')
+                clientId.innerHTML = dataset[i].client_id;
+                li.appendChild(clientId);
 
                 var options = document.createElement('span');
                 options.className = ('popbtn')
@@ -54,9 +67,25 @@ function getList() {
                 li.appendChild(options)
 
                 var sensorType = document.createElement('span');
-                sensorType.className = ('price')
+                sensorType.className = ('sensorType')
                 sensorType.innerHTML = dataset[i].sensor_type;
                 li.appendChild(sensorType)
+
+                var amazonImg = document.createElement('img')
+                amazonImg.setAttribute('src', '/static/images/amazon.png');
+                amazonImg.setAttribute('alt', productData.name);
+                amazonImg.setAttribute('onclick', "imageClick('"+productData.amazon_buy_link+"')");
+                amazonImg.setAttribute('height', "20px");
+                amazonImg.setAttribute('weight', "20px");
+                li.appendChild(amazonImg);
+
+                var walmartImg = document.createElement('img')
+                walmartImg.setAttribute('src', '/static/images/walmart.png');
+                walmartImg.setAttribute('alt', productData.name);
+                walmartImg.setAttribute('onclick', "imageClick('"+productData.walmart_buy_link+"')");
+                walmartImg.setAttribute('height', "20px");
+                walmartImg.setAttribute('weight', "20px");
+                li.appendChild(walmartImg);
 
                 list.appendChild(li)
             };
@@ -91,4 +120,8 @@ function getProductInfo(productId) {
         }
     });
     return dataset;
+}
+
+function imageClick(url) {
+    window.open(url, "_blank");
 }
