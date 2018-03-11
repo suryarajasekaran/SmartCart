@@ -15,7 +15,7 @@ def automatic_sensor_check():
                            sensor_type="automatic")
         send_data(data=data)
 
-schedule.every(10).seconds.do(automatic_sensor_check)
+schedule.every(30).seconds.do(automatic_sensor_check)
 
 while True:
     schedule.run_pending()
