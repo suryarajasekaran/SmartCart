@@ -58,7 +58,11 @@ def list():
 @cross_origin(origin=origin_str)
 def product():
     if request.method == 'GET':
-        query_filter = {}
+        arg_product_id = request.args.get('product_id', None)
+        if arg_product_id is not None:
+            query_filter = {"product_id": arg_product_id}
+        else:
+            query_filter = {}
         data_access_obj = DataAccess()
         output_data = data_access_obj.mongodb_obj.get_product(query_filter=query_filter)
         return json.dumps(output_data)

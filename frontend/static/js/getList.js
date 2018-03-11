@@ -22,6 +22,7 @@ function getList() {
             var list = document.getElementById('list');
             list.innerHTML = ""
             for(var i = 0; i < dataset.length; i++) {
+                productData = getProductInfo(dataset[i].product_id)[0]
                 //dataset[i].sensor_id;
                 //dataset[i].product_id;
                 //dataset[i].timestamp;
@@ -37,7 +38,7 @@ function getList() {
 
                 var productId = document.createElement('span');
                 productId.className = ('itemName')
-                productId.innerHTML = dataset[i].product_id;
+                productId.innerHTML = productData.name;
                 li.appendChild(productId)
 
                 var options = document.createElement('span');
@@ -52,17 +53,34 @@ function getList() {
 
                 list.appendChild(li)
             };
-            /*
-            <li class="row">
-                <span class="quantity">1</span>
-                <span class="itemName">Birthday Cake</span>
-                <span class="popbtn"><a class="arrow"></a></span>
-                <span class="price">$49.95</span>
-            </li>
-            */
         },
         error: function () {
-            console.log("getList.js error");
+            console.log("getList.js error for list");
+        }
+    });
+}
+
+function getProductInfo(productId) {
+    $.ajax({
+        url: 'http://ec2-54-183-133-199.us-west-1.compute.amazonaws.com:8881/product?product_id='+productId,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+        },
+        //contentType: "application/json; charset=utf-8",
+        xhrFields: {
+                       withCredentials: true
+                    },
+        crossDomain: true,
+        cache: false,
+        success: function (result) {
+            var dataset = result;
+            console.log(dataset);
+            return dataset;
+        },
+        error: function () {
+            console.log("getList.js error for product "+productId);
         }
     });
 }
