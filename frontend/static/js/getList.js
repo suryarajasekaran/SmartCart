@@ -61,6 +61,7 @@ function getList() {
 }
 
 function getProductInfo(productId) {
+    var dataset;
     $.ajax({
         url: 'http://ec2-54-183-133-199.us-west-1.compute.amazonaws.com:8881/product?product_id='+productId,
         type: "GET",
@@ -75,12 +76,12 @@ function getProductInfo(productId) {
         crossDomain: true,
         cache: false,
         success: function (result) {
-            var dataset = result;
+            dataset = result;
             console.log(dataset);
-            return dataset;
         },
         error: function () {
             console.log("getList.js error for product "+productId);
         }
     });
+    return dataset;
 }
