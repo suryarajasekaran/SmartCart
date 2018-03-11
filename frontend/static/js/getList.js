@@ -29,7 +29,6 @@ function getList() {
                 //dataset[i].client_id;
                 var li = document.createElement('li');
                 li.className = ('row')
-                li.innerHTML = '<span class="popbtn"><a class="arrow"></a></span>'
 
                 var slNo = document.createElement('span');
                 slNo.className = ('quantity')
@@ -41,12 +40,15 @@ function getList() {
                 productId.innerHTML = dataset[i].product_id;
                 li.appendChild(productId)
 
+                var options = document.createElement('span');
+                options.className = ('popbtn')
+                options.innerHTML = '<a class="arrow"></a>'
+                li.appendChild(options)
+
                 var sensorType = document.createElement('span');
                 sensorType.className = ('price')
                 sensorType.innerHTML = dataset[i].sensor_type;
                 li.appendChild(sensorType)
-
-
 
                 list.appendChild(li)
             };
