@@ -33,7 +33,13 @@ def list():
         timestamp = datetime.datetime.now()
         json_data = request.get_json(force=True)
         json_data["timestamp"] = timestamp
+        json_data["state"] = "active"
         data_access_obj = DataAccess()
+        temp_json_data = {
+            "query_filter": {"client_id": json_data["client_id"], "state":"active"},
+            "list_update_data": {"state":"inactive"}
+        }
+        data_access_obj.mongodb_obj.update_list(query_filter=temp_json_data["query_filter"], list_update_data=temp_json_data["list_update_data"])
         data_access_obj.mongodb_obj.add_list(list_data=json_data)
         return json.dumps({"status": True})
     elif request.method == 'PUT':
