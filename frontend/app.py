@@ -10,15 +10,8 @@ def ping():
     return json.dumps({"status":True})
 
 @app.route('/')
-@app.route('/home')
-@app.route('/index')
-@app.route('/list')
 def home():
     return render_template("index.html")
 
-@app.route('/realtime')
-def ping():
-    return render_template("realtime.html")
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6662, debug=True)
+    app.run(host='0.0.0.0', port=8882, debug=True)

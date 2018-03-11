@@ -25,7 +25,11 @@ def ping():
 @cross_origin(origin=origin_str)
 def list():
     if request.method == 'GET':
-        query_filter = {}
+        arg_state = request.args.get('state', None)
+        if arg_state is not None:
+            query_filter = {"state":arg_state}
+        else:
+            query_filter = {}
         data_access_obj = DataAccess()
         output_data = data_access_obj.mongodb_obj.get_list(query_filter=query_filter)
         return json.dumps(output_data)

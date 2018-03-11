@@ -1,7 +1,7 @@
 //JS to populate abbreviations/names of  all stations
 
 $.ajax({
-    url: 'http://suryarajasekaran.com:8881/stations',
+    url: 'http://ec2-54-183-133-199.us-west-1.compute.amazonaws.com:8881/list',
     type: "GET",
     dataType: "json",
     data: {
