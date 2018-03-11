@@ -11,6 +11,7 @@ def get_sensor_value():
     return GPIO.input(23)
 
 def automatic_sensor_check():
+    print "sensor value is "+str(get_sensor_value())
     if get_sensor_value() == read_config()["sensor_type"]["automatic"]["alert_thresold"]:
         data = create_data(sensor_id=read_config()["sensor_type"]["automatic"]["sensor_id"],
                            product_id=read_config()["product_id"],
