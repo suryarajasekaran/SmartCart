@@ -48,7 +48,7 @@ def list():
         return json.dumps({"status": True})
     elif request.method == 'PUT':
         json_data = request.get_json(force=True)
-        if json_data["list_update_data"]["status"] == "bought" or json_data["list_update_data"]["status"] == "remove":
+        if json_data["list_update_data"]["state"] == "bought" or json_data["list_update_data"]["state"] == "remove":
             timestamp = datetime.datetime.now()
             json_data["list_update_data"]["timestamp"] = timestamp
         data_access_obj = DataAccess()
