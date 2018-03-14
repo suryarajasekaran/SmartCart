@@ -11,7 +11,8 @@ def ping():
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("index1.html")
+    #return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8882, debug=True)

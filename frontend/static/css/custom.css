@@ -135,6 +135,7 @@ a:hover {
 	padding-left: 15px;
 	background-color: #ffffff;
 	margin-bottom: 11px;
+
 }
 
 .row span{
@@ -202,16 +203,16 @@ a:hover {
 	color: #727578;
 	font-size :8px;
 	font-weight: bold;
-	float: left;
+	float: right;
 	padding-left:25px;
 }
 
 .timestamp{
 	color: #727578;
-	font-size :16px;
+	font-size :12px;
 	font-weight: bold;
-	float: left;
-	padding-left:25px;
+	float: right;
+	padding-right:10px;
 }
 
 .popbtn{
@@ -224,6 +225,18 @@ a:hover {
 	cursor: pointer;
 }
 
+
+.deleted{
+	background-color: #e6edf3;
+	margin-left: 25px;
+	height: 63px;
+	width: 40px;
+	padding: 32px 0 0 14px !important;
+	float: right;
+	cursor: pointer;
+}
+
+
 .arrow{
 	width: 0; 
 	height: 0; 
@@ -233,6 +246,7 @@ a:hover {
 }
 
 .sensorType{
+
 	color: #f06953;
 	font-size :18px;
 	font-weight: bold;

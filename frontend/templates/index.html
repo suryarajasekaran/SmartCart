@@ -1,69 +1,85 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Shopping Cart</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}"/>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/custom.css') }}"/>
-	</head>
+<html lang="en">
+<head>
+  <title>SmartCart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-		<body>
+<body style="background-color:#FFF0F5">
 
-		<nav class="navbar">
-			<div class="container">
-				<a class="navbar-brand" href="#"><h2>SmartCart</h2></a><br>
-				<a class="navbar-brand" href="#"><br><h6>Surya Rajasekaran & Sravya Patruni</h6></a>
-				<br>
-				<div class="navbar-right">
-					<div class="container minicart"></div>
-				</div>
-			</div>
-		</nav>
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: ##FFCCCC;
+    color: black;
+    text-align: center;
+}
+</style>
 
-		<div class="container-fluid breadcrumbBox text-center">
-			<ol class="breadcrumb">
-				<li class="active"><a href="#">List</a></li>
-			</ol>
-		</div>
+<div class="container">
+	<img src="../static/images/smartcartlogo.png" alt="smartcartlogo" style="float:left;width:200px;height:200px;">
+  <br>
+	<br>
+	<br>
+	<br>
 
-		<div class="container text-center">
+	<h4>Your Shopping List:</h4>
 
-			<div class="col-md-5 col-sm-12">
-				<div class="bigcart"></div>
-				<h1>Your shopping list</h1>
-				<p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>S.No.</th>
+        <th>Image</th>
+        <th>Product</th>
+	  	<th>Timestamp</th>
+        <th>Cheapest Price</th>
+	  	<th>Amazon</th>
+	  	<th>Walmart</th>
+		<th>Details</th>
+		<th>Addition Type</th>
+		<th>Sensor</th>
+        <th>Client</th>
+      </tr>
+    </thead>
 
-					<form action="/html/tags/html_form_tag_action.cfm" method="post">
-					<textarea name="comments" id="comments" style="width:96%;height:90px;background-color:#FFE8DC;color:black;border:none;padding:2%;font:15px/15px sans-serif;"> Enter shopping items/notes etc :
-					</textarea>
-				<input type="submit" value="Save" style="background-color:#FE9F6D;color:black;padding:5px;font-size:18px;border:none;padding:8px;">
+	  <tbody id="list">
 
-					</form>
-				</p>
-			</div>
+	  </tbody>
 
-			<div class="col-md-7 col-sm-12 text-left">
-				<ul id="list">
-					<!-- LIST -->
-				</ul>
-			</div>
+	<!--tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr-->
 
-		</div>
 
-		<!-- The popover content THAT NEEDS TO HAVE INTERFACE WITH Database-->
 
-		<div id="popover" style="display: none">
-			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-		</div>
+  </table>
+</div>
 
-		<!-- JavaScript includes -->
+<div class="footer">
+  <p>Smart Cart by Surya Rajasekaran & Sravya Patruni</p>
+</div>
 
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
-		<script src="{{ url_for('static',filename='js/customjs.js') }}"></script>
-		<script src="{{ url_for('static',filename='js/getList.js') }}"></script>
-	</body>
+<script src="{{ url_for('static',filename='js/getList2.js') }}"></script>
 
+
+</body>
 </html>
