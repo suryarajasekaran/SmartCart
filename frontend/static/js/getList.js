@@ -19,26 +19,22 @@ function getList() {
         success: function (result) {
 
             var dataset = result;
-            console.log(dataset);
+            //console.log(dataset);
             var list = document.getElementById('list');
             list.innerHTML = ""
             for(var i = 0; i < dataset.length; i++) {
 
                 productData = getProductInfo(dataset[i].product_id)[0]
-                var li = document.createElement('li');
-                li.className = ('row')
+                var li = document.createElement('tr');
 
-                 /*Arrow
-                 var arrow = document.createElement('span');
-                 arrow.className = ('popbtn')
-                 var arrowbutton = document.createElement('a');
-                 arrowbutton.className = ('arrow')
-                 arrow.appendChild(arrowbutton);
-                 li.appendChild(arrow);*/
+
+                var slNo = document.createElement('span');
+                slNo.className = ('slNo')
+                slNo.innerHTML = i+1;
+                li.appendChild(slNo)
 
                 //Image
-                var productImg = document.createElement('span');
-                productImg.className = ('productImg')
+                var productImg = document.createElement('td');
                 var pImg = document.createElement('img')
                 pImg.setAttribute('src', productData.image);
                 pImg.setAttribute('alt', productData.name);
@@ -47,147 +43,96 @@ function getList() {
                 productImg.appendChild(pImg);
                 li.appendChild(productImg);
 
-                /*var slNo = document.createElement('span');
-                slNo.className = ('slNo')
-                slNo.innerHTML = i+1;
-                li.appendChild(slNo)*/
-
                  //name
-                var productName = document.createElement('span');
-                productName.className = ('productName')
-                productName.innerHTML = "   "+ productData.name ;
+                var productName = document.createElement('td');
+                productName.innerHTML = productData.name ;
                 li.appendChild(productName);
 
                 //timestamp
-                var timestamp = document.createElement('span');
-                timestamp.className = ('timestamp')
-                //dataset[i].timestamp.date;
+                var timestamp = document.createElement('td');
                 var d = new Date(dataset[i].timestamp['$date'])
                 var n = d.toLocaleString();
-                timestamp.innerHTML = "<br>Added on: "+ n;
-                //timestamp.innerHTML =  + dataset[i].timestamp.date;
+                timestamp.innerHTML = n;
                 li.appendChild(timestamp);
 
-                //auto or manual
-                var sensorType = document.createElement('span');
-                sensorType.className = ('sensorType')
-                sensorType.innerHTML = (dataset[i].sensor_type);
-                li.appendChild(sensorType)
+                //Proce
+                var price = document.createElement('td');
 
-
-
-                /*sensor id
-                var sensorId = document.createElement('span');
-                sensorId.className = ('sensorId')
-                sensorId.innerHTML = "Sensor name : "+String(dataset[i].sensor_id);
-                li.appendChild(sensorId);
-
-                //rasberry id
-                var clientId = document.createElement('span');
-                clientId.className = ('clientId')
-                clientId.innerHTML = "<br> <br>Client name : "+String(dataset[i].client_id);
-                li.appendChild(clientId);*/
-
-            /* var options = document.createElement('div');
-                div.className = ('popover')
-                li.appendChild(div)*/
-
-
-              /*var div = document.createElement('div');
-                //div.setAttribute('class', 'popover');
-                div.setAttribute("id", "popover");
-                div.setAttribute("style", "display: none");
-               //document.getElementById("blockOfStuff").style.display = "none";
-                div.innerHTML = " <a id = 'bought'> Bought <span class='glyphicon glyphicon-pencil'></span> </a> <a id = 'delete'>Delete<span class='glyphicon glyphicon-remove'></span> </a>"
-    //document.getElementById('blockOfStuff').innerHTML;
-                li.appendChild(div);
-                console.log(div) */
+                li.appendChild(price)
 
                 //amazon
-                var amazonImg = document.createElement('img')
-                amazonImg.setAttribute('src', '/static/images/amazon.png');
-                amazonImg.setAttribute('alt', productData.name);
-                amazonImg.setAttribute('onclick', "imageClick('"+productData.amazon_buy_link+"')");
-                amazonImg.setAttribute('height', "20px");
-                amazonImg.setAttribute('weight', "20px");
-                console.log(productData.amazon_buy_link)
+                var amazonImg = document.createElement('td');
+                var aImg = document.createElement('img')
+                aImg.setAttribute('src', '/static/images/amazon.png');
+                aImg.setAttribute('alt', productData.name);
+                aImg.setAttribute('onclick', "imageClick('"+productData.amazon_buy_link+"')");
+                aImg.setAttribute('height', "20px");
+                aImg.setAttribute('weight', "20px");
+                amazonImg.appendChild(aImg);
                 li.appendChild(amazonImg);
 
                 //walmart
-                var walmartImg = document.createElement('img')
-                walmartImg.setAttribute('src', '/static/images/walmart.png');
-                walmartImg.setAttribute('alt', productData.name);
-                walmartImg.setAttribute('onclick', "imageClick('"+productData.walmart_buy_link+"')");
-                console.log(productData.walmart_buy_link)
-                walmartImg.setAttribute('height', "20px");
-                walmartImg.setAttribute('weight', "20px");
+                var walmartImg = document.createElement('td');
+                var wImg = document.createElement('img')
+                wImg.setAttribute('src', '/static/images/walmart.png');
+                wImg.setAttribute('alt', productData.name);
+                wImg.setAttribute('onclick', "imageClick('"+productData.walmart_buy_link+"')");
+                wImg.setAttribute('height', "20px");
+                wImg.setAttribute('weight', "20px");
+                walmartImg.appendChild(wImg);
                 li.appendChild(walmartImg);
 
-                list.appendChild(li)
+                //delete cause bought
+                var bought = document.createElement("BUTTON");
+                 bought.setAttribute("id", "bought");
+                 bought.setAttribute("class", "btn btn-success");
+                 //var dateepoc = new Date();
+                 //console.log("epock time datenow"+dateepoc)
+                 //var epoch_time1 = dateepoc.getTime();
+                 //console.log("epock time 1 "+epoch_time1)
+                 bought.setAttribute('onclick', "updateProductStatus('"+dataset[i].product_id+"','bought')");
+                 var optionbought = document.createElement('option')
+                    optionbought.innerHTML = "Bought"
+                    bought.appendChild(optionbought);
+                li.appendChild(bought);
+                onclick
 
-                var todo = document.createElement('select');
-                todo.setAttribute("id", "select");
-                var optionselect = document.createElement('option')
-                optionselect.innerHTML = "--Select--"
+                //console.log(li)
 
-                var option1 = document.createElement('option')
-                option1.innerHTML = "Bought"
+                //stop sensing
+                 var stopsensing = document.createElement("BUTTON");
+                  stopsensing.setAttribute("id", "Stop Sensing");
+                  stopsensing.setAttribute("class", "btn btn-danger");
+                    var dateepoc2 = new Date();
+                  var epoch_time2 = dateepoc2.getTime();
+                   stopsensing.setAttribute('onclick', "updateProductStatus('"+dataset[i].product_id+"','remove')");
 
-                var option2 = document.createElement('option')
-                    option2.innerHTML = "Stop"
-
-                todo.appendChild(optionselect);
-                todo.appendChild(option1);
-                todo.appendChild(option2);
-                li.appendChild(todo);
-
-                var btn = document.createElement("BUTTON");
-                btn.setAttribute("id", "submit");
-                var optionbutton = document.createElement('option')
-                    optionbutton.innerHTML = "Submit"
-                   btn.appendChild(optionbutton);
-                //document.body.appendChild(btn);
-                  li.appendChild(btn);
-                  console.log(todo);
-                  submitvalue(todo)
-
-
-
- //document.getElementById("submit").onclick =
-               function submitvalue(Submitvalue) {
-                var Submitvalue=Submitvalue;
-                console.log(Submitvalue)
-
-                var history = document.getElementById("select").value;
-                var deletesensing = document.getElementById("select").value;
-                    //console.log(history)
-                    //console.log(deletesensing)
-
-        if (history =='Bought')
-       {
-           //add to hostory table
-
-        }
-
-        else if (deletesensing =='')
-        {
-            //delete sensor
-        }
+                   var optionstop = document.createElement('option')
+                    optionstop.innerHTML = "Remove"
+                    stopsensing.appendChild(optionstop);
+                li.appendChild(stopsensing);
 
 
-        history.value="";
-        deletesensing.value="";
+                //auto or manual
+                var sensorType = document.createElement('td');
+                sensorType.innerHTML = (dataset[i].sensor_type);
+                li.appendChild(sensorType)
 
-                 }
+                //sensor id
+                var sensorId = document.createElement('td');
+                sensorId.innerHTML = dataset[i].sensor_id;
+                li.appendChild(sensorId);
+
+                //rasberry id
+                var clientId = document.createElement('td');
+                clientId.innerHTML = dataset[i].client_id;
+                li.appendChild(clientId);
 
 
 
-
-
-        }
-
+                list.appendChild(li);
+            }
         },
-
         error: function () {
             console.log("getList.js error for list");
         }
@@ -211,7 +156,7 @@ function getProductInfo(productId) {
         cache: false,
         success: function (result) {
             dataset = result;
-            console.log(dataset);
+           //console.log(dataset);
         },
         error: function () {
             console.log("getList.js error for product "+productId);
@@ -223,3 +168,35 @@ function getProductInfo(productId) {
 function imageClick(url) {
     window.open(url, "_blank");
 }
+
+//delay
+function updateProductStatus(productId, status) {
+    var dataset;
+    $.ajax({
+        url: 'http://ec2-54-183-133-199.us-west-1.compute.amazonaws.com:8881/list',
+        type: "PUT",
+        dataType: "json",
+        async: false,
+        data: '{"query_filter" : {"product_id": "'+productId+'", "state": "active"}, "list_update_data" : {"state": "'+status+'"}}',
+
+        //contentType: "application/json; charset=utf-8",
+        xhrFields: {
+                       withCredentials: true
+                    },
+        crossDomain: true,
+        cache: false,
+        success: function (result) {
+            dataset = result;
+            //console.log("time of stop func "+timeofstop);
+           //console.log(dataset);
+        },
+        error: function () {
+            console.log("getList.js error for product "+productId);
+        }
+    });
+    getList();
+    return dataset;
+}
+
+
+
