@@ -48,6 +48,9 @@ def list():
         return json.dumps({"status": True})
     elif request.method == 'PUT':
         json_data = request.get_json(force=True)
+        if json_data["list_update_data"]["status"] == "bought" or json_data["list_update_data"]["status"] == "remove":
+            timestamp = datetime.datetime.now()
+            json_data["list_update_data"]["timestamp"] = timestamp
         data_access_obj = DataAccess()
         data_access_obj.mongodb_obj.update_list(query_filter=json_data["query_filter"], list_update_data=json_data["list_update_data"])
         return json.dumps({"status": True})

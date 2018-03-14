@@ -19,7 +19,7 @@ function getList() {
         success: function (result) {
 
             var dataset = result;
-            console.log(dataset);
+            //console.log(dataset);
             var list = document.getElementById('list');
             list.innerHTML = ""
             for(var i = 0; i < dataset.length; i++) {
@@ -86,6 +86,10 @@ function getList() {
                 var bought = document.createElement("BUTTON");
                  bought.setAttribute("id", "bought");
                  bought.setAttribute("class", "btn btn-success");
+                 //var dateepoc = new Date();
+                 //console.log("epock time datenow"+dateepoc)
+                 //var epoch_time1 = dateepoc.getTime();
+                 //console.log("epock time 1 "+epoch_time1)
                  bought.setAttribute('onclick', "updateProductStatus('"+dataset[i].product_id+"','bought')");
                  var optionbought = document.createElement('option')
                     optionbought.innerHTML = "Bought"
@@ -93,13 +97,16 @@ function getList() {
                 li.appendChild(bought);
                 onclick
 
-                console.log(li)
+                //console.log(li)
 
                 //stop sensing
                  var stopsensing = document.createElement("BUTTON");
                   stopsensing.setAttribute("id", "Stop Sensing");
                   stopsensing.setAttribute("class", "btn btn-danger");
-                  stopsensing.setAttribute('onclick', "updateProductStatus('"+dataset[i].product_id+"','remove')");
+                    var dateepoc2 = new Date();
+                  var epoch_time2 = dateepoc2.getTime();
+                   stopsensing.setAttribute('onclick', "updateProductStatus('"+dataset[i].product_id+"','remove')");
+
                    var optionstop = document.createElement('option')
                     optionstop.innerHTML = "Remove"
                     stopsensing.appendChild(optionstop);
@@ -149,7 +156,7 @@ function getProductInfo(productId) {
         cache: false,
         success: function (result) {
             dataset = result;
-            console.log(dataset);
+           //console.log(dataset);
         },
         error: function () {
             console.log("getList.js error for product "+productId);
@@ -171,6 +178,7 @@ function updateProductStatus(productId, status) {
         dataType: "json",
         async: false,
         data: '{"query_filter" : {"product_id": "'+productId+'", "state": "active"}, "list_update_data" : {"state": "'+status+'"}}',
+
         //contentType: "application/json; charset=utf-8",
         xhrFields: {
                        withCredentials: true
@@ -179,7 +187,8 @@ function updateProductStatus(productId, status) {
         cache: false,
         success: function (result) {
             dataset = result;
-            console.log(dataset);
+            //console.log("time of stop func "+timeofstop);
+           //console.log(dataset);
         },
         error: function () {
             console.log("getList.js error for product "+productId);
