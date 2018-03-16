@@ -1,13 +1,13 @@
 {
-  "client_id" : "raspberry-pi-1",
-  "product_id" : "p01",
+  "client_id" : "raspberry-pi-2",
+  "product_id" : "p02",
   "sensor_type" : {
     "automatic" : {
-      "sensor_id" : "level-sensor-1",
+      "sensor_id" : "level-sensor-2",
       "alert_thresold" : 0
     },
     "manual" : {
-      "sensor_id": "button-sensor-1",
+      "sensor_id": "button-sensor-2",
       "alert_thresold" : 0
     }
   }

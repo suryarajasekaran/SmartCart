@@ -20,5 +20,5 @@ def create_data(sensor_id, product_id, sensor_type, client_id):
     return data
 
 def read_config():
-    data = json.load(open('/home/pi/SmartCart/client/config.json')) # this is hardcoded for raspberry
+    data = json.load(open('/home/pi/SmartCart/client2/config.json')) # this is hardcoded for raspberry
     return data
