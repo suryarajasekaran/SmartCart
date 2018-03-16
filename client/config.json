@@ -8,7 +8,7 @@
     },
     "manual" : {
       "sensor_id": "button-sensor-1",
-      "alert_thresold" : 1
+      "alert_thresold" : 0
     }
   }
 }
