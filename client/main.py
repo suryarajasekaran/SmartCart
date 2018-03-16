@@ -17,6 +17,7 @@ def automatic_sensor_check():
                            product_id=read_config()["product_id"],
                            client_id=read_config()["client_id"],
                            sensor_type="automatic")
+        print "sending .. sensor value " + str(get_sensor_value())
         send_data(data=data)
 
 def get_button_value():
@@ -31,6 +32,7 @@ def manual_button_check():
                            product_id=read_config()["product_id"],
                            client_id=read_config()["client_id"],
                            sensor_type="manual")
+        print "sending .. button value " + str(get_sensor_value())
         send_data(data=data)
 
 schedule.every(30).seconds.do(automatic_sensor_check)
