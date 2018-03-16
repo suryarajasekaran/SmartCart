@@ -22,7 +22,7 @@ def automatic_sensor_check():
 
 def get_button_value():
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     return GPIO.input(16)
 
 def manual_button_check():

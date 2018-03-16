@@ -6,7 +6,7 @@ from client import *
 
 def get_button_value():
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     return GPIO.input(18)
 
 def manual_button_check():
