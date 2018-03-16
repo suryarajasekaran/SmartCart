@@ -58,7 +58,7 @@ function getHistory() {
 
                 //Proce
                 var price = document.createElement('td');
-
+                price.innerHTML = productData.price ;
                 li.appendChild(price)
 
                 //auto or manual
