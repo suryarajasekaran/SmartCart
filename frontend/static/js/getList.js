@@ -57,7 +57,7 @@ function getList() {
 
                 //Proce
                 var price = document.createElement('td');
-
+                price.innerHTML = productData.price ;
                 li.appendChild(price)
 
                 //amazon
