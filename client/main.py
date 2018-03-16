@@ -19,8 +19,23 @@ def automatic_sensor_check():
                            sensor_type="automatic")
         send_data(data=data)
 
+def get_button_value():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    return GPIO.input(16)
+
+def manual_button_check():
+    print "button value is "+str(get_button_value())
+    if get_button_value() == read_config()["sensor_type"]["manual"]["alert_thresold"]:
+        data = create_data(sensor_id=read_config()["sensor_type"]["manual"]["sensor_id"],
+                           product_id=read_config()["product_id"],
+                           client_id=read_config()["client_id"],
+                           sensor_type="manual")
+        send_data(data=data)
+
 schedule.every(30).seconds.do(automatic_sensor_check)
+schedule.every(1).seconds.do(manual_button_check)
 
 while True:
     schedule.run_pending()
-    time.sleep(1)
+    time.sleep(0.5)
